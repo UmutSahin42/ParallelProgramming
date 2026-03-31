@@ -20,11 +20,12 @@ def custom_equation(x: int = 0, y: int= 0, /, a: int=1, b: int=1, *, c: int=1) -
     """
     return (custom_power(x,a) + custom_power(y,b))/c
 
-def fn_w_counter() -> tuple[int, dict[str, int]]:
+def fn_w_counter() -> (int, dict[str, int]):
     if not hasattr(fn_w_counter, "count"):
         setattr(fn_w_counter, "count", 0)
+        setattr(fn_w_counter,"dictionary",{})
     fn_w_counter.count += 1
-    temp_dict = {}
-    temp_dict[(str)(__name__)] = fn_w_counter.count
-    temp_tuple = (fn_w_counter.count, temp_dict)
-    return temp_tuple 
+    fn_w_counter.dictionary[(str)(__name__)] = fn_w_counter.count
+    return fn_w_counter.count,fn_w_counter.dictionary
+
+
